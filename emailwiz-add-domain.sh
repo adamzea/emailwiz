@@ -36,6 +36,10 @@ sudo tee -a /etc/postfix/dkim/signingtable <<EOF
 *@${domain} mail._domainkey.${domain}
 EOF
 
+# Add line to /etc/postfix/main.cf
+sudo tee -a /etc/postfix/main.cf <<EOF virtual_alias_domains = ${domain}
+EOF
+
 # Apply changes and restart services
 sudo postmap /etc/postfix/virtual
 sudo postmap -F /etc/postfix/vmail_ssl.map
