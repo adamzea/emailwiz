@@ -114,6 +114,12 @@ echo "/^Received:.*/     IGNORE
 # domain, they must be authenticated as that user
 echo "/^(.*)@$(sh -c "echo $domain | sed 's/\./\\\./'")$/   \${1}" > /etc/postfix/login_maps.pcre
 
+# Add virtual alias maps file
+postconf -e "virtual_alias_maps = hash:/etc/postfix/virtual"
+# provide the map to be used when SNI support is enabled
+postconf -e "tls_server_sni_maps = hash:/etc/postfix/vmail_ssl.map"
+
+
 # master.cf
 echo "Configuring Postfix's master.cf..."
 
