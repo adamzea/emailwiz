@@ -37,8 +37,14 @@ sudo tee -a /etc/postfix/dkim/signingtable <<EOF
 EOF
 
 # Add line to /etc/postfix/main.cf
-sudo tee -a /etc/postfix/main.cf <<EOF virtual_alias_domains = ${domain}
-EOF
+# sudo tee -a /etc/postfix/main.cf <<EOF virtual_alias_domains = ${domain}
+# EOF
+# Edit the /etc/postfix/main.cf file
+# Find the line that says "virtual_alias_domains ="
+# Add the requested domain name to the end of that line
+sed -i "/^virtual_alias_domains =/ s/$/ $domain/" /etc/postfix/main.cf
+
+
 
 # Apply changes and restart services
 sudo postmap /etc/postfix/virtual
