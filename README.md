@@ -4,8 +4,8 @@ This script installs an email server with all the features required in the
 modern web.
 
 ```sh
-curl -LO https://github.com/adamzea/emailwiz/raw/master/emailwiz.sh
-curl -LO https://github.com/adamzea/emailwiz/raw/master/emailwiz-add-domain.sh
+curl -LO https://github.com/adamzea/emailwiz/raw/master/emailwiz.sh && 
+curl -LO https://github.com/adamzea/emailwiz/raw/master/emailwiz-add-domain.sh &&
 curl -LO https://github.com/adamzea/emailwiz/raw/master/emailwiz_add-user.sh
 ```
 
