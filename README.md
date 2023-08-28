@@ -8,6 +8,12 @@ curl -LO https://github.com/adamzea/emailwiz/raw/master/emailwiz.sh &&
 curl -LO https://github.com/adamzea/emailwiz/raw/master/emailwiz-add-domain.sh &&
 curl -LO https://github.com/adamzea/emailwiz/raw/master/emailwiz_add-user.sh
 ```
+Change permissions to executable:
+```sh
+chmod +x emailwiz.sh && 
+chmod +x emailwiz-add-domain.sh &&
+chmod +x emailwiz_add-user.sh
+```
 
 When prompted by a dialog menu at the beginning, select "Internet Site", then
 give your full domain without any subdomain, e.g. `lukesmith.xyz`.
