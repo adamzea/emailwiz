@@ -236,6 +236,12 @@ plugin {
 	sieve_dir = ~/.sieve
 	sieve_global_dir = /var/lib/dovecot/sieve/
 }
+
+# Primary domain for server $maildomain
+local_name $maildomain {
+    ssl_cert = <$certdir/fullchain.pem
+    ssl_key = <$certdir/privkey.pem
+}
 " > /etc/dovecot/dovecot.conf
 
 # If using an old version of Dovecot, remove the ssl_dl line.
