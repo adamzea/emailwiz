@@ -16,7 +16,9 @@
 # different for every installation and is uniquely generated on your machine.
 
 umask 0022
-
+# remove iptables that's pre-installed on oracle cloud
+apt remove iptables
+#install requirements and set variables
 apt-get install -y postfix postfix-pcre dovecot-imapd dovecot-pop3d dovecot-sieve opendkim opendkim-tools spamassassin spamc net-tools fail2ban
 domain="$(cat /etc/mailname)"
 subdom=${MAIL_SUBDOM:-mail}
