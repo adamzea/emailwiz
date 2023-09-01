@@ -12,6 +12,7 @@ echo "Enter email address:"
 read email
 
 echo "$email $username" >> /etc/postfix/virtual
+/usr/sbin/postmap /etc/postfix/virtual
 
-postmap /etc/postfix/virtual
+# postmap /etc/postfix/virtual
 systemctl restart postfix
