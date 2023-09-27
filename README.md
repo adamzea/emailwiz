@@ -14,6 +14,10 @@ chmod +x emailwiz.sh &&
 chmod +x emailwiz-add-domain.sh &&
 chmod +x emailwiz_add-user.sh
 ```
+Run
+```sh
+./emailwiz.sh
+```
 
 When prompted by a dialog menu at the beginning, select "Internet Site", then
 give your full domain without any subdomain, e.g. `lukesmith.xyz`.
@@ -98,8 +102,7 @@ should set this for both IPv4 and IPv6.
 Let's say we want to add a user Billy and let him receive mail, run this:
 
 ```
-useradd -m -G mail billy
-passwd billy
+./emailwiz_add-user.sh
 ```
 
 Any user added to the `mail` group will be able to receive mail. Suppose a user
