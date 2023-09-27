@@ -82,8 +82,8 @@ postconf -e 'smtpd_tls_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1'
 postconf -e 'smtp_tls_protocols = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1'
 
 # Exclude suboptimal ciphers.
-postconf -e 'tls_preempt_cipherlist = yes'
-postconf -e 'smtpd_tls_exclude_ciphers = aNULL, LOW, EXP, MEDIUM, ADH, AECDH, MD5, DSS, ECDSA, CAMELLIA128, 3DES, CAMELLIA256, RSA+AES, eNULL'
+# postconf -e 'tls_preempt_cipherlist = yes'
+# postconf -e 'smtpd_tls_exclude_ciphers = aNULL, LOW, EXP, MEDIUM, ADH, AECDH, MD5, DSS, ECDSA, CAMELLIA128, 3DES, CAMELLIA256, RSA+AES, eNULL'
 
 # Here we tell Postfix to look to Dovecot for authenticating users/passwords.
 # Dovecot will be putting an authentication socket in /var/spool/postfix/private/auth
@@ -335,6 +335,8 @@ enabled = true
 enabled = true
 [dovecot]
 enabled = true" > /etc/fail2ban/jail.d/emailwiz.local
+
+sed -i "s|^backend = auto$|backend = systemd|" /etc/fail2ban/jail.conf
 
 # Enable SpamAssassin update cronjob.
 if [ -f /etc/default/spamassassin ]
