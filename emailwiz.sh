@@ -16,8 +16,10 @@
 # different for every installation and is uniquely generated on your machine.
 
 umask 0022
-# remove iptables that's pre-installed on oracle cloud
-apt remove iptables
+# configure iptables that's pre-installed on oracle cloud
+apt install iptables
+iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT && sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT && sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 25 -j ACCEPT && sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 993 -j ACCEPT && sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 465 -j ACCEPT && sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 587 -j ACCEPT
+netfilter-persistent save
 #install requirements and set variables
 apt-get install -y postfix postfix-pcre dovecot-imapd dovecot-pop3d dovecot-sieve opendkim opendkim-tools spamassassin spamc net-tools fail2ban
 domain="$(cat /etc/mailname)"
