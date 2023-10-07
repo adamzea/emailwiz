@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Request domain name
-read -p "Enter domain name: " domain
+read -p "Enter domain name to add: " domain
 
 # Create SSL certificate for mail subdomain
 sudo certbot certonly --standalone -d mail.$domain
@@ -64,4 +64,4 @@ echo "$domain        TXT     v=spf1 mx a:mail.$domain -all"
 # Show DMARC record to add to DNS server
 echo "_dmarc		IN	TXT	\"v=DMARC1; p=none; rua=mailto:dmarc@$domain; fo=1\""
 
-echo "Done!"
+echo "Done! Add the above records to your DNS server."
