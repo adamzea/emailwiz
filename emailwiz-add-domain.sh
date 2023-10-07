@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Request domain name
 read -p "Enter domain name to add: " domain
