@@ -14,5 +14,5 @@ read email
 echo "$email $username" >> /etc/postfix/virtual
 
 postmap /etc/postfix/virtual
-systemctl restart postfix
+systemctl restart postfix && systemctl restart dovecot
 echo "You can now log into an email program with that username"
