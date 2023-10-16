@@ -1,3 +1,5 @@
+# DOESN'T WORK PROPERLY YET
+
 # Email server setup script
 
 This script installs an email server with all the features required in the
