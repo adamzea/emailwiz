@@ -123,6 +123,10 @@ postconf -e "virtual_alias_maps = hash:/etc/postfix/virtual"
 # provide the map to be used when SNI support is enabled
 postconf -e "tls_server_sni_maps = hash:/etc/postfix/vmail_ssl.map"
 
+# Add line to vmail_ssl.map file
+sudo tee -a /etc/postfix/vmail_ssl.map <<EOF
+mail.$domain /etc/letsencrypt/live/mail.$domain/privkey.pem /etc/letsencrypt/live/mail.$domain/fullchain.pem
+EOF
 
 # master.cf
 echo "Configuring Postfix's master.cf..."
