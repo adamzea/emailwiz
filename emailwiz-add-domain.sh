@@ -4,7 +4,7 @@
 read -p "Enter domain name to add: " domain
 
 # Create SSL certificate for mail subdomain
-sudo certbot -d "mail.$domain" certonly --nginx --register-unsafely-without-email --agree-tos
+sudo certbot -d "mail.$domain" certonly --register-unsafely-without-email --agree-tos
 
 # Add lines to dovecot.conf file
 sudo tee -a /etc/dovecot/dovecot.conf <<EOF
