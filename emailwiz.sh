@@ -120,6 +120,8 @@ echo "/^(.*)@$(sh -c "echo $domain | sed 's/\./\\\./'")$/   \${1}" > /etc/postfi
 
 # Add virtual alias maps file
 postconf -e "virtual_alias_maps = hash:/etc/postfix/virtual"
+# Add virtual alias domains reference for future domains to be supported
+postconf -e "virtual_alias_domains = "
 # provide the map to be used when SNI support is enabled
 postconf -e "tls_server_sni_maps = hash:/etc/postfix/vmail_ssl.map"
 
