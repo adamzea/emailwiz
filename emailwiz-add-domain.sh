@@ -28,7 +28,7 @@ sudo chmod -R g+r /etc/postfix/dkim/*
 
 # Add line to keytable file
 sudo tee -a /etc/postfix/dkim/keytable <<EOF
-mail._domainkey.$domain $domain:mail:/etc/postfix/dkim/$domain/mail.private
+mail._domainkey.$domain $domain:mail:/etc/postfix/dkim/$domain/mail.$domain.private
 EOF
 
 # Add line to signingtable file
