@@ -55,7 +55,7 @@ sudo systemctl restart opendkim
 
 # Show DKIM record to add to DNS server
 subdom="mail"
-pval="$(tr -d '\n' <"/etc/postfix/dkim/$domain/$subdom.txt" | sed "s/k=rsa.* \"p=/k=rsa; p=/;s/\"\s*\"//;s/\"\s*).*//" | grep -o 'p=.*')"
+pval="$(tr -d '\n' <"/etc/postfix/dkim/$domain/$subdom.$domain.txt" | sed "s/k=rsa.* \"p=/k=rsa; p=/;s/\"\s*\"//;s/\"\s*).*//" | grep -o 'p=.*')"
 echo "$subdom._domainkey.$domain   TXT     v=DKIM1; k=rsa; $pval"
 
 # Show SPF record to add to DNS server
