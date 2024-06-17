@@ -53,6 +53,18 @@ sudo systemctl restart postfix
 sudo systemctl restart dovecot
 sudo systemctl restart opendkim
 
+# Add deploy hook for certbot renewals to apply to Postfix 
+# Create the reload-postfix.sh file
+echo '#!/bin/bash' > /etc/letsencrypt/renewal-hooks/deploy/reload-postfix.sh
+echo '' >> /etc/letsencrypt/renewal-hooks/deploy/reload-postfix.sh
+# Add the desired commands
+echo 'postmap -F /etc/postfix/vmail_ssl.map' >> /etc/letsencrypt/renewal-hooks/deploy/reload-postfix.sh
+echo 'systemctl restart postfix && systemctl restart dovecot && systemctl restart opendkim' >> /etc/letsencrypt/renewal-hooks/deploy/reload-postfix.sh
+# Make the script executable
+chmod +x /etc/letsencrypt/renewal-hooks/deploy/reload-postfix.sh
+
+echo "Script 'reload-postfix.sh' has been created and configured."
+
 # Show DKIM record to add to DNS server
 subdom="mail"
 pval="$(tr -d '\n' <"/etc/postfix/dkim/$domain/$subdom.$domain.txt" | sed "s/k=rsa.* \"p=/k=rsa; p=/;s/\"\s*\"//;s/\"\s*).*//" | grep -o 'p=.*')"
