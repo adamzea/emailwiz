@@ -31,6 +31,13 @@ sudo tee -a /etc/postfix/dkim/keytable <<EOF
 mail._domainkey.$domain $domain:mail:/etc/postfix/dkim/$domain/mail.$domain.private
 EOF
 
+# Replace "." in the domain with "\." to create domain-pcre 
+domain_pcre=$(echo $domain | sed 's/\./\\./g') 
+# Add the line to /etc/postfix/login_maps.pcre 
+sudo tee -a /etc/postfix/login_maps.pcre <<EOF 
+/^(.*)@$domain_pcre$/ \${1}
+EOF
+
 # Add line to signingtable file
 sudo tee -a /etc/postfix/dkim/signingtable <<EOF
 *@${domain} mail._domainkey.${domain}
