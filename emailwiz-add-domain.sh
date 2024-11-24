@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "Be sure to make an A record for your new mail.example.tld domain that points to the IP address of this server in your DNS server."
 # Request domain name
 read -p "Enter domain name to add: " domain
 
